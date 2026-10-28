@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ──────────────────────────────────────────────────────────────
+   "Ink & Volt" palette
+   Warm paper / near-black neutrals, an electric lime signature
+   ("volt") and an ember orange for heat. No blue, no purple.
+   ────────────────────────────────────────────────────────────── */
+:root {
+  --bg: #f4f2ec;
+  --surface: #ffffff;
+  --surface-2: #ebe8df;
+  --fg: #0e0e0c;
+  --muted: #6a675e;
+  --line: rgb(14 14 12 / 0.1);
+  --glass: rgb(255 255 255 / 0.62);
+  --volt: #d4ff3f;
+  --volt-ink: #4a6300; /* volt family, but readable as text on light backgrounds */
+  --ember: #ff5a1f;
+  --ring: #0e0e0c;
+  --grain-opacity: 0.035;
+}
+
+.dark {
+  --bg: #0a0a09;
+  --surface: #131311;
+  --surface-2: #1b1b18;
+  --fg: #f1efe8;
+  --muted: #8e8b82;
+  --line: rgb(241 239 232 / 0.09);
+  --glass: rgb(19 19 17 / 0.55);
+  --volt-ink: #d4ff3f;
+  --ember: #ff6a33;
+  --ring: #d4ff3f;
+  --grain-opacity: 0.06;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-volt: var(--volt);
+  --color-volt-ink: var(--volt-ink);
+  --color-ember: var(--ember);
+}
+
+@theme {
+  --color-ink: #0e0e0c;
+  --color-paper: #f4f2ec;
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-drift: drift 16s ease-in-out infinite alternate;
+  --animate-drift-slow: drift 24s ease-in-out infinite alternate-reverse;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes drift {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(8%, -10%, 0) scale(1.18); }
+  }
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-bg font-sans text-fg;
+    min-height: 100svh;
+  }
+  ::selection {
+    background: var(--volt);
+    color: #0e0e0c;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+}
+
+/* Film grain overlay — the subtle texture that separates "designed" from "generated". */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Utilities ──────────────────────────────────────────── */
+@utility shell {
+  width: 100%;
+  max-width: 82rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility glass {
+  background: var(--glass);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ── Theme switching ───────────────────────────────────── */
+/* Browsers with View Transitions: a circular reveal driven from JS. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+/* Fallback: a quick cross-fade of colours. */
+html.theme-fade,
+html.theme-fade *,
+html.theme-fade *::before,
+html.theme-fade *::after {
+  transition:
+    background-color 0.45s var(--ease-out-expo),
+    border-color 0.45s var(--ease-out-expo),
+    color 0.45s var(--ease-out-expo),
+    fill 0.45s var(--ease-out-expo) !important;
+}
+
+/* ── Lenis smooth scroll ───────────────────────────────── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
