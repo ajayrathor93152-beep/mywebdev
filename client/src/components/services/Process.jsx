@@ -35,7 +35,7 @@ export default function Process() {
           {processSteps.map((step, i) => (
             <motion.li key={step.title} variants={fadeUp} className="relative pl-12 md:pl-0 md:pt-14">
               <span className="absolute left-0 top-0 grid size-6 place-items-center rounded-full border border-fg bg-bg">
-                <span className="size-2 rounded-full bg-ember" />
+                <span className="size-2 rounded-full bg-violet" />
               </span>
               <p className="font-mono text-xs text-muted">
                 0{i + 1} · {step.when}

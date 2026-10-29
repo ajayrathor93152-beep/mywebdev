@@ -15,13 +15,19 @@ function SpotlightCard({ className, children }) {
     <motion.article
       variants={fadeUp}
       onPointerMove={onPointerMove}
+      whileHover={{ y: -6 }}
+      transition={{ type: "spring", stiffness: 260, damping: 22 }}
       className={cn(
-        "group relative overflow-hidden rounded-[28px] border border-line bg-surface p-7 md:p-8",
-        "before:pointer-events-none before:absolute before:inset-0 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100",
-        "before:bg-[radial-gradient(420px_circle_at_var(--mx)_var(--my),color-mix(in_oklab,var(--volt)_18%,transparent),transparent_60%)]",
+        "glass-dark neon-border group relative overflow-hidden rounded-[28px] p-7 md:p-8",
+        // The neon edge (::before) fades in and starts circling only while hovered.
+        "before:opacity-0 before:transition-opacity before:duration-500 hover:animate-spin-border hover:before:opacity-100",
         className
       )}
     >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(420px_circle_at_var(--mx)_var(--my),color-mix(in_oklab,var(--violet)_22%,transparent),transparent_60%)]"
+      />
       {children}
     </motion.article>
   );
@@ -43,7 +49,7 @@ const LAYOUTS = [
   ["col-span-2 row-span-2", "col-span-4", "col-span-2", "col-span-2", "col-span-6"],
   ["col-span-6", "col-span-3 row-span-2", "col-span-3", "col-span-3", "col-span-2"],
 ];
-const BLOCK_TONES = ["bg-volt", "bg-fg/10", "bg-ember/80", "bg-fg/[0.06]", "bg-fg/15"];
+const BLOCK_TONES = ["bg-volt", "bg-fg/10", "bg-violet/80", "bg-cyan/70", "bg-fg/15"];
 
 function ShufflingLayout() {
   const [layout, setLayout] = useState(0);
@@ -110,7 +116,7 @@ function ResponsiveFrame() {
         className="flex flex-col gap-1.5 rounded-xl border border-line bg-bg p-2"
       >
         <div className="flex gap-1">
-          <span className="size-1.5 rounded-full bg-ember" />
+          <span className="size-1.5 rounded-full bg-violet" />
           <span className="size-1.5 rounded-full bg-fg/20" />
           <span className="size-1.5 rounded-full bg-fg/20" />
         </div>
@@ -151,7 +157,7 @@ function MicroPlayground() {
         whileTap={{ scale: 0.85 }}
         className={cn(
           "h-9 rounded-full border px-4 text-sm font-medium transition-colors",
-          liked ? "border-ember bg-ember text-white" : "border-line text-fg hover:border-fg/30"
+          liked ? "border-violet bg-violet text-white" : "border-line text-fg hover:border-fg/30"
         )}
       >
         {liked ? "♥ Saved" : "♡ Save"}

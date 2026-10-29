@@ -11,6 +11,8 @@ const variants = {
   solid: "bg-fg text-bg",
   ghost: "border border-line bg-transparent text-fg hover:border-fg/40",
   glass: "glass border border-line text-fg",
+  // Dark glass with a rotating yellow → violet → cyan edge. Made for dark backgrounds.
+  neon: "glass-dark neon-border animate-spin-border text-fg hover:shadow-[0_10px_50px_-12px_var(--violet)]",
 };
 
 const iconVariants = {
@@ -18,6 +20,7 @@ const iconVariants = {
   solid: "bg-volt text-ink",
   ghost: "bg-fg text-bg",
   glass: "bg-fg text-bg",
+  neon: "bg-violet text-white",
 };
 
 const sizes = {

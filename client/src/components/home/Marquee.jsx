@@ -13,7 +13,7 @@ function Row() {
   return ITEMS.map((item) => (
     <span key={item} className="flex shrink-0 items-center gap-8 pr-8">
       <span>{item}</span>
-      <svg viewBox="0 0 24 24" className="size-5 text-ember" aria-hidden>
+      <svg viewBox="0 0 24 24" className="size-5 text-violet" aria-hidden>
         <path d="M12 0c.6 6.4 5.6 11.4 12 12-6.4.6-11.4 5.6-12 12-.6-6.4-5.6-11.4-12-12C6.4 11.4 11.4 6.4 12 0Z" fill="currentColor" />
       </svg>
     </span>

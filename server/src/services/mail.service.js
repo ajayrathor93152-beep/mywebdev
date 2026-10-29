@@ -10,6 +10,16 @@ const transporter = env.SMTP_HOST
     })
   : null;
 
+// Human-readable names for the service keys in validators/inquiry.schema.js.
+const SERVICE_LABELS = {
+  website: "Custom Website Design & Development",
+  ecommerce: "E-Commerce Solutions",
+  restaurant: "Cafes & Restaurants Websites",
+  mvp: "Startup & Sales MVP Development",
+  dashboard: "Custom Dashboards & UI/UX Design",
+  other: "Something else",
+};
+
 const escapeHtml = (value = "") =>
   String(value).replace(
     /[&<>"']/g,
@@ -28,19 +38,21 @@ export async function notifyNewInquiry(inquiry) {
     return;
   }
 
+  const service = SERVICE_LABELS[inquiry.service] ?? inquiry.service;
+
   const jobs = [
     env.MAIL_TO &&
     transporter.sendMail({
       from: env.MAIL_FROM,
       to: env.MAIL_TO,
       replyTo: inquiry.email,
-      subject: `New inquiry · ${inquiry.name} · ${inquiry.service}`,
+      subject: `New inquiry · ${inquiry.name} · ${service}`,
       text: [
         `Name: ${inquiry.name}`,
         `Email: ${inquiry.email}`,
         `Phone: ${inquiry.phone ?? "—"}`,
         `Company: ${inquiry.company ?? "—"}`,
-        `Service: ${inquiry.service}`,
+        `Service: ${service}`,
         `Budget: ${inquiry.budget}`,
         "",
         inquiry.message,
@@ -48,7 +60,7 @@ export async function notifyNewInquiry(inquiry) {
       html: `
         <div style="font-family:system-ui,sans-serif;font-size:14px;color:#0e0e0c">
           <h2 style="margin:0 0 16px">New project inquiry</h2>
-          <table>${row("Name", inquiry.name)}${row("Email", inquiry.email)}${row("Phone", inquiry.phone)}${row("Company", inquiry.company)}${row("Service", inquiry.service)}${row("Budget", inquiry.budget)}</table>
+          <table>${row("Name", inquiry.name)}${row("Email", inquiry.email)}${row("Phone", inquiry.phone)}${row("Company", inquiry.company)}${row("Service", service)}${row("Budget", inquiry.budget)}</table>
           <p style="white-space:pre-wrap;margin-top:16px;padding:16px;background:#f4f2ec;border-radius:12px">${escapeHtml(inquiry.message)}</p>
         </div>`,
     }),

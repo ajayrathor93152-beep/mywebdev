@@ -25,6 +25,8 @@
         try {
           var t = localStorage.getItem("theme");
           if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          // The landing page is always dark (see useForcedTheme in pages/Home.jsx) — paint it that way from frame one.
+          if (location.pathname === "/") t = "dark";
           if (t === "dark") document.documentElement.classList.add("dark");
           document.documentElement.style.colorScheme = t;
         } catch (e) {}

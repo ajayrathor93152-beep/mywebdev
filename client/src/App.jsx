@@ -9,6 +9,7 @@ import Home from "@/pages/Home";
 // Home ships in the main bundle for the fastest first paint; everything else is code-split.
 const Services = lazy(() => import("@/pages/Services"));
 const Work = lazy(() => import("@/pages/Work"));
+const WorkSample = lazy(() => import("@/pages/WorkSample"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
@@ -17,6 +18,7 @@ const routes = [
   { path: "/", element: <Home /> },
   { path: "/services", element: <Services /> },
   { path: "/work", element: <Work /> },
+  { path: "/work/:category", element: <WorkSample /> },
   { path: "/about", element: <About /> },
   { path: "/contact", element: <Contact /> },
   { path: "*", element: <NotFound /> },

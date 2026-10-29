@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { site } from "@/config/site";
+import { useTheme } from "@/context/ThemeContext";
 import { ease } from "@/lib/motion";
 
 function LocalTime() {
@@ -24,6 +25,7 @@ function LocalTime() {
 }
 
 export default function Footer() {
+  const { forced: forcedTheme } = useTheme();
   return (
     <footer className="relative mt-32 overflow-hidden border-t border-line">
       <div className="shell grid gap-16 pb-10 pt-20 md:grid-cols-12">
@@ -42,7 +44,7 @@ export default function Footer() {
           </Link>
           <a
             href={`mailto:${site.email}`}
-            className="mt-8 inline-block text-lg text-muted underline decoration-line underline-offset-8 transition-colors hover:text-fg hover:decoration-ember"
+            className="mt-8 inline-block text-lg text-muted underline decoration-line underline-offset-8 transition-colors hover:text-fg hover:decoration-violet"
           >
             {site.email}
           </a>
@@ -84,10 +86,12 @@ export default function Footer() {
             <p className="mt-2 text-muted">
               Local time <LocalTime />
             </p>
-            <div className="mt-6 flex items-center gap-3">
-              <ThemeToggle />
-              <span className="text-sm text-muted">Theme</span>
-            </div>
+            {!forcedTheme && (
+              <div className="mt-6 flex items-center gap-3">
+                <ThemeToggle />
+                <span className="text-sm text-muted">Theme</span>
+              </div>
+            )}
           </div>
         </nav>
       </div>

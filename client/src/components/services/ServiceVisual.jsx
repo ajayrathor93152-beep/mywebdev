@@ -34,7 +34,7 @@ function WebsiteVisual() {
     <Frame className="grid place-items-center">
       <div className="relative w-full max-w-sm overflow-hidden rounded-2xl border border-line bg-bg shadow-[0_30px_60px_-30px_rgb(0_0_0/0.35)]">
         <div className="flex items-center gap-1.5 border-b border-line px-3 py-2.5">
-          <span className="size-2 rounded-full bg-ember" />
+          <span className="size-2 rounded-full bg-violet" />
           <span className="size-2 rounded-full bg-fg/20" />
           <span className="size-2 rounded-full bg-fg/20" />
           <span className="ml-3 h-4 flex-1 rounded-full bg-fg/[0.06]" />
@@ -64,7 +64,7 @@ function WebsiteVisual() {
             transition={{ ...loop, times: [0, 0.45, 0.52, 0.6, 1] }}
             className="block h-7 w-28 rounded-full bg-volt"
           />
-          <span className="block h-20 rounded-xl bg-[linear-gradient(120deg,var(--ember),var(--volt))] opacity-80" />
+          <span className="block h-20 rounded-xl bg-[linear-gradient(120deg,var(--violet),var(--volt))] opacity-80" />
         </div>
 
         <motion.svg
@@ -88,7 +88,7 @@ function EcommerceVisual() {
     <Frame className="grid place-items-center">
       <div className="absolute right-5 top-5 flex items-center gap-2 rounded-full border border-line bg-bg px-3 py-2 text-sm">
         <ShoppingBag className="size-4" />
-        <span className="relative grid size-5 place-items-center overflow-hidden rounded-full bg-ember text-[11px] font-semibold text-white">
+        <span className="relative grid size-5 place-items-center overflow-hidden rounded-full bg-violet text-[11px] font-semibold text-white">
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.span
               key={count}
@@ -106,7 +106,7 @@ function EcommerceVisual() {
       <div className="mt-8 flex items-end gap-3">
         {[
           { tone: "var(--volt)", price: "$48", tilt: -4 },
-          { tone: "var(--ember)", price: "$72", tilt: 3 },
+          { tone: "var(--violet)", price: "$72", tilt: 3 },
         ].map((p, i) => (
           <motion.div
             key={p.price}
@@ -189,7 +189,7 @@ function RestaurantVisual() {
         >
           {MENU.map((item) => (
             <li key={item.name} className="flex items-center gap-2 rounded-xl bg-surface-2 p-2">
-              <span className="size-8 shrink-0 rounded-lg bg-[linear-gradient(135deg,var(--ember),var(--volt))] opacity-80" />
+              <span className="size-8 shrink-0 rounded-lg bg-[linear-gradient(135deg,var(--violet),var(--volt))] opacity-80" />
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-[10px] font-medium">{item.name}</span>
                 {item.tag && <span className="text-[8px] text-muted">{item.tag}</span>}
@@ -251,8 +251,8 @@ function MvpVisual() {
           transition={{ type: "spring", delay: 0.8 }}
           style={{ originX: "100px", originY: "128px" }}
         >
-          <circle cx="100" cy="128" r="10" fill="var(--ember)" opacity="0.25" />
-          <circle cx="100" cy="128" r="5" fill="var(--ember)" />
+          <circle cx="100" cy="128" r="10" fill="var(--violet)" opacity="0.25" />
+          <circle cx="100" cy="128" r="5" fill="var(--violet)" />
         </motion.g>
       </svg>
     </Frame>
@@ -273,7 +273,7 @@ function DashboardVisual() {
       <div className="grid grid-cols-3 gap-2">
         {[
           ["Revenue", "bg-volt"],
-          ["Orders", "bg-ember"],
+          ["Orders", "bg-violet"],
           ["Retention", "bg-fg/70"],
         ].map(([label, tone]) => (
           <div key={label} className="rounded-xl border border-line bg-bg p-3">

@@ -13,7 +13,10 @@ with JWT access/refresh auth for the admin area.
 │       ├── main.jsx                providers (Theme, Router)
 │       ├── App.jsx                 routes, lazy pages, page transitions, smooth scroll
 │       ├── index.css               design tokens ("Ink & Volt"), light/dark, utilities
-│       ├── config/site.js          brand name, contact details, nav, socials
+│       ├── config/
+│       │   ├── site.js             brand name, contact details, nav, socials
+│       │   ├── services.js         the 5 services (keys shared with the API)
+│       │   └── samples.js          live-sample catalogue for /work
 │       ├── context/
 │       │   ├── ThemeContext.jsx    toggle with circular View-Transition reveal
 │       │   └── AuthContext.jsx     admin session (wrap admin routes only)
@@ -25,8 +28,10 @@ with JWT access/refresh auth for the admin area.
 │       ├── components/
 │       │   ├── layout/             Navbar, Footer, Layout, PageTransition
 │       │   ├── ui/                 Button (magnetic), ThemeToggle, Logo, PageIntro
-│       │   └── home/               Hero, Marquee, WhyChooseUs, CtaBand
-│       └── pages/                  Home, Services, Work, About, Contact, NotFound
+│       │   ├── home/               Hero, Marquee, WhyChooseUs, CtaBand
+│       │   ├── samples/            one themed, interactive mini-site per service
+│       │   └── contact/            ContactForm (validation, honeypot, animated states)
+│       └── pages/                  Home, Services, Work, WorkSample (/work/:category), About, Contact, NotFound
 │
 └── server/                         Express API
     └── src/

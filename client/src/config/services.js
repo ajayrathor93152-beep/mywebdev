@@ -43,7 +43,7 @@ export const services = [
   {
     key: "restaurant",
     short: "Cafés & QR menus",
-    title: "Cafe & Restaurant Websites + Smart QR Menus",
+    title: "Cafes & Restaurants Websites",
     tagline: "Menus guests *love* to scroll.",
     description:
       "A mouth-watering website plus a QR-powered digital menu you update in seconds — sold out, new special, price change. No reprinting, ever.",
@@ -62,7 +62,7 @@ export const services = [
   {
     key: "mvp",
     short: "Startup MVPs",
-    title: "Startup & SaaS MVP Development",
+    title: "Startup & Sales MVP Development",
     tagline: "From napkin sketch to *paying users*.",
     description:
       "We help founders scope ruthlessly, design the core flow and ship a production-grade MVP — auth, payments, analytics — so you can validate fast and raise with confidence.",

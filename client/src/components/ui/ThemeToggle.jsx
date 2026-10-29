@@ -5,8 +5,11 @@ import { ease } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 
 export default function ThemeToggle({ className }) {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, forced, toggleTheme } = useTheme();
   const isDark = theme === "dark";
+
+  // A page that pins its own theme (e.g. the always-dark landing page) has nothing to toggle.
+  if (forced) return null;
 
   return (
     <button

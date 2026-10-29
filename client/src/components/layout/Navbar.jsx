@@ -80,7 +80,7 @@ export default function Navbar() {
               {i === activeIndex && (
                 <motion.span
                   layoutId="nav-dot"
-                  className="absolute -bottom-0.5 left-1/2 size-1 -translate-x-1/2 rounded-full bg-ember"
+                  className="absolute -bottom-0.5 left-1/2 size-1 -translate-x-1/2 rounded-full bg-violet"
                 />
               )}
             </li>

@@ -19,7 +19,7 @@ export default function Logo({ className }) {
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          <circle cx="16" cy="19.5" r="2.2" fill="var(--ember)" />
+          <circle cx="16" cy="19.5" r="2.2" fill="var(--violet)" />
         </svg>
       </span>
       <span className="text-[1.15rem] font-semibold tracking-[-0.04em]">{site.name.toLowerCase()}</span>
